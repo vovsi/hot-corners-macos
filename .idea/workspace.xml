@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b87108-f873-4389-a005-1a4b94d57430" name="Changes" comment="readme update" />
+    <list default="true" id="99b87108-f873-4389-a005-1a4b94d57430" name="Changes" comment="add style for CornerPreviewPanel">
+      <change beforePath="$PROJECT_DIR$/Sources/HotCorners/CornerMonitor.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/HotCorners/CornerMonitor.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/HotCorners/CornerPreviewPanel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/HotCorners/CornerPreviewPanel.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +38,9 @@
                                         <execution>
                                           <execution>
                                             <execution>
-                                              <execution />
+                                              <execution>
+                                                <execution />
+                                              </execution>
                                             </execution>
                                           </execution>
                                         </execution>
@@ -59,47 +64,47 @@
     </execution>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="494" />
+    <option name="cachedIndexableFilesCount" value="5157" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "vovsi"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;vovsi&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/vovsi/hot-corners-macos.git",
-    "accountId": "87420d50-daa3-4603-9a01-2cbe1fcd418a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/vovsi/hot-corners-macos.git&quot;,
+    &quot;accountId&quot;: &quot;87420d50-daa3-4603-9a01-2cbe1fcd418a&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.023683071351725" />
-      <entry key="MS500" value="1.4738088931924467" />
-      <entry key="S2" value="2.180733959531268" />
-      <entry key="S5" value="3.1896986138419914" />
-      <entry key="S10" value="3.9061770161631917" />
-      <entry key="S30" value="4.64968648628266" />
-      <entry key="S60" value="5.150780960700189" />
-      <entry key="M2" value="5.74675734972287" />
-      <entry key="M5" value="6.380374292234355" />
-      <entry key="M10" value="6.665790966694687" />
-      <entry key="M15" value="6.7713599733845715" />
-      <entry key="M30" value="6.882652397717197" />
-      <entry key="H1" value="6.940547826061263" />
-      <entry key="H2" value="6.970076568556379" />
-      <entry key="H4" value="6.984988599984301" />
-      <entry key="D1" value="6.997491169648608" />
-      <entry key="W1" value="6.999641425551933" />
+      <entry key="MS100" value="1.010380912114133" />
+      <entry key="MS500" value="1.521496089612582" />
+      <entry key="S2" value="3.2896140962352454" />
+      <entry key="S5" value="5.009189872515602" />
+      <entry key="S10" value="6.173120326540011" />
+      <entry key="S30" value="7.356895805200751" />
+      <entry key="S60" value="7.990134176541048" />
+      <entry key="M2" value="8.658480215458745" />
+      <entry key="M5" value="9.341747580902192" />
+      <entry key="M10" value="9.645735387345876" />
+      <entry key="M15" value="9.757806861355219" />
+      <entry key="M30" value="9.875779595742088" />
+      <entry key="H1" value="9.937086403816654" />
+      <entry key="H2" value="9.968339478128351" />
+      <entry key="H4" value="9.984118444186873" />
+      <entry key="D1" value="9.99734591864067" />
+      <entry key="W1" value="9.999620669879036" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -121,51 +126,51 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.0026159783780058" />
-      <entry key="MS500" value="1.4676915757278122" />
-      <entry key="S2" value="2.1783566568933144" />
-      <entry key="S5" value="3.18820306895097" />
-      <entry key="S10" value="3.9052322774678783" />
-      <entry key="S30" value="4.6493038238634545" />
-      <entry key="S60" value="5.150568237441831" />
-      <entry key="M2" value="5.746638634592592" />
-      <entry key="M5" value="6.380321601360564" />
-      <entry key="M10" value="6.665763452498219" />
-      <entry key="M15" value="6.771341342622315" />
-      <entry key="M30" value="6.882642930604284" />
-      <entry key="H1" value="6.940543053049025" />
-      <entry key="H2" value="6.9700741719896095" />
-      <entry key="H4" value="6.984987399160758" />
-      <entry key="D1" value="6.997490969156409" />
-      <entry key="W1" value="6.99964139690147" />
+      <entry key="MS100" value="0.9895875717402767" />
+      <entry key="MS500" value="1.5151141045351368" />
+      <entry key="S2" value="3.2859807045250595" />
+      <entry key="S5" value="5.006879510327608" />
+      <entry key="S10" value="6.171663257644249" />
+      <entry key="S30" value="7.356306499315875" />
+      <entry key="S60" value="7.989812637219918" />
+      <entry key="M2" value="8.658305580180118" />
+      <entry key="M5" value="9.341672107121882" />
+      <entry key="M10" value="9.645696404237826" />
+      <entry key="M15" value="9.757780566585916" />
+      <entry key="M30" value="9.875766287349881" />
+      <entry key="H1" value="9.937079707797238" />
+      <entry key="H2" value="9.968336119459757" />
+      <entry key="H4" value="9.98411676216204" />
+      <entry key="D1" value="9.9973456379273" />
+      <entry key="W1" value="9.999620629767893" />
     </decayedShown>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php@8.3/8.3.33/bin/php" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2,
-  "fromUser": false
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3IOdkgvBYMjU3HL6VE4z1qYweVF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/ovsi/Work/Projects/My/hot-corners-macos",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ovsi/Work/Projects/My/hot-corners-macos&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -182,6 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1787639693767</updated>
       <workItem from="1787639694783" duration="2800000" />
+      <workItem from="1787660998403" duration="397000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -191,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787639713974</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add style for CornerPreviewPanel">
+      <option name="closed" value="true" />
+      <created>1787661015518</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1787661015518</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +213,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="add style for CornerPreviewPanel" />
+    <option name="LAST_COMMIT_MESSAGE" value="add style for CornerPreviewPanel" />
   </component>
 </project>

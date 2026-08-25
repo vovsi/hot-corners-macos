@@ -53,7 +53,7 @@ final class CornerPreviewPanel: NSPanel {
         collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenAuxiliary, .ignoresCycle]
         hidesOnDeactivate = false
         isReleasedWhenClosed = false
-        alphaValue = 0
+        alphaValue = 1
 
         let view = CornerPreviewView(frame: NSRect(origin: .zero, size: previewSize), icon: icon)
         view.onConfirm = { [weak self] in self?.onConfirm?() }
@@ -66,8 +66,7 @@ final class CornerPreviewPanel: NSPanel {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.28
             context.timingFunction = CAMediaTimingFunction(name: .easeOut)
-            self.animator().setFrameOrigin(self.restingOrigin)
-            self.animator().alphaValue = 1
+            self.animator().setFrame(NSRect(origin: self.restingOrigin, size: self.frame.size), display: true)
         }
     }
 
@@ -129,16 +128,32 @@ private final class CornerPreviewView: NSView {
         layer?.addSublayer(shapeLayer)
         updateFill()
 
+        // macOS app icons ship with a faint drop shadow baked into the
+        // artwork's transparent padding, meant to sit on top of the Dock's
+        // blurred background. On our flat card it reads as a grey smudge, so
+        // the icon is clipped to a slightly tighter rounded rect and
+        // overscaled to crop that shadow ring away.
+        let iconClip = NSView()
+        iconClip.wantsLayer = true
+        iconClip.layer?.cornerRadius = 30
+        iconClip.layer?.masksToBounds = true
+        iconClip.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(iconClip)
+
         iconView.image = icon
         iconView.imageScaling = .scaleProportionallyUpOrDown
         iconView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(iconView)
+        iconClip.addSubview(iconView)
 
         NSLayoutConstraint.activate([
-            iconView.widthAnchor.constraint(equalToConstant: 144),
-            iconView.heightAnchor.constraint(equalToConstant: 144),
-            iconView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            iconClip.widthAnchor.constraint(equalToConstant: 144),
+            iconClip.heightAnchor.constraint(equalToConstant: 144),
+            iconClip.centerXAnchor.constraint(equalTo: centerXAnchor),
+            iconClip.centerYAnchor.constraint(equalTo: centerYAnchor),
+            iconView.widthAnchor.constraint(equalToConstant: 158),
+            iconView.heightAnchor.constraint(equalToConstant: 158),
+            iconView.centerXAnchor.constraint(equalTo: iconClip.centerXAnchor),
+            iconView.centerYAnchor.constraint(equalTo: iconClip.centerYAnchor),
         ])
 
         addTrackingArea(NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .inVisibleRect], owner: self))
@@ -148,6 +163,7 @@ private final class CornerPreviewView: NSView {
 
     override func layout() {
         super.layout()
+        shapeLayer.frame = bounds
         let path = CGPath(roundedRect: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
         shapeLayer.path = path
         shapeLayer.shadowPath = path

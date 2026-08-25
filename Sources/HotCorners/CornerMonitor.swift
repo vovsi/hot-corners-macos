@@ -33,7 +33,7 @@ final class CornerMonitor {
         }
 
         if let panel = previewPanel {
-            if panel.hoverZone(in: screen.frame).contains(point) {
+            if panel.hoverZone(in: screen.frame).insetBy(dx: -1, dy: -1).contains(point) {
                 return
             }
             hidePreview()
