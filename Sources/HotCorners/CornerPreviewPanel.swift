@@ -121,10 +121,7 @@ private final class CornerPreviewView: NSView {
 
         shapeLayer.strokeColor = NSColor.separatorColor.cgColor
         shapeLayer.lineWidth = 1
-        shapeLayer.shadowColor = NSColor.black.cgColor
-        shapeLayer.shadowOpacity = 0.35
-        shapeLayer.shadowRadius = 16
-        shapeLayer.shadowOffset = NSSize(width: 0, height: -2)
+        shapeLayer.shadowOpacity = 0
         layer?.addSublayer(shapeLayer)
         updateFill()
 
@@ -164,9 +161,7 @@ private final class CornerPreviewView: NSView {
     override func layout() {
         super.layout()
         shapeLayer.frame = bounds
-        let path = CGPath(roundedRect: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
-        shapeLayer.path = path
-        shapeLayer.shadowPath = path
+        shapeLayer.path = CGPath(roundedRect: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
     }
 
     override func mouseEntered(with event: NSEvent) { isHovering = true }
