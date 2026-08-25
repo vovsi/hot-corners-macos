@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AIDiffSettings">
+    <option name="showAIDiff" value="false" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="99b87108-f873-4389-a005-1a4b94d57430" name="Changes" comment="readme update" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
   <component name="ComposerSettings">
     <execution>
       <execution>
@@ -21,7 +34,9 @@
                                       <execution>
                                         <execution>
                                           <execution>
-                                            <execution />
+                                            <execution>
+                                              <execution />
+                                            </execution>
                                           </execution>
                                         </execution>
                                       </execution>
@@ -43,9 +58,147 @@
       </execution>
     </execution>
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="494" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "vovsi"
   }
-}</component>
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/vovsi/hot-corners-macos.git",
+    "accountId": "87420d50-daa3-4603-9a01-2cbe1fcd418a"
+  }
+}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.023683071351725" />
+      <entry key="MS500" value="1.4738088931924467" />
+      <entry key="S2" value="2.180733959531268" />
+      <entry key="S5" value="3.1896986138419914" />
+      <entry key="S10" value="3.9061770161631917" />
+      <entry key="S30" value="4.64968648628266" />
+      <entry key="S60" value="5.150780960700189" />
+      <entry key="M2" value="5.74675734972287" />
+      <entry key="M5" value="6.380374292234355" />
+      <entry key="M10" value="6.665790966694687" />
+      <entry key="M15" value="6.7713599733845715" />
+      <entry key="M30" value="6.882652397717197" />
+      <entry key="H1" value="6.940547826061263" />
+      <entry key="H2" value="6.970076568556379" />
+      <entry key="H4" value="6.984988599984301" />
+      <entry key="D1" value="6.997491169648608" />
+      <entry key="W1" value="6.999641425551933" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.0026159783780058" />
+      <entry key="MS500" value="1.4676915757278122" />
+      <entry key="S2" value="2.1783566568933144" />
+      <entry key="S5" value="3.18820306895097" />
+      <entry key="S10" value="3.9052322774678783" />
+      <entry key="S30" value="4.6493038238634545" />
+      <entry key="S60" value="5.150568237441831" />
+      <entry key="M2" value="5.746638634592592" />
+      <entry key="M5" value="6.380321601360564" />
+      <entry key="M10" value="6.665763452498219" />
+      <entry key="M15" value="6.771341342622315" />
+      <entry key="M30" value="6.882642930604284" />
+      <entry key="H1" value="6.940543053049025" />
+      <entry key="H2" value="6.9700741719896095" />
+      <entry key="H4" value="6.984987399160758" />
+      <entry key="D1" value="6.997490969156409" />
+      <entry key="W1" value="6.99964139690147" />
+    </decayedShown>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php@8.3/8.3.33/bin/php" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3IOdkgvBYMjU3HL6VE4z1qYweVF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/ovsi/Work/Projects/My/hot-corners-macos",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-PS-262.9437.196" />
+        <option value="bundled-php-predefined-a98d8de5180a-9522f28f0b20-com.jetbrains.php.sharedIndexes-PS-262.9437.196" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99b87108-f873-4389-a005-1a4b94d57430" name="Changes" comment="" />
+      <created>1787639693767</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1787639693767</updated>
+      <workItem from="1787639694783" duration="2800000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1787639713974</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1787639713974</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
 </project>
