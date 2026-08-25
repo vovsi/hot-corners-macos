@@ -6,9 +6,10 @@ final class CornerPreviewPanel: NSPanel {
     var onConfirm: (() -> Void)?
 
     private let previewSize = NSSize(width: 220, height: 220)
-    /// Gap kept between the card and the physical screen edges, so it reads
-    /// as a floating card rather than merging into the screen bezel.
-    private let edgeMargin: CGFloat = 14
+    /// Fraction of the card kept on-screen at rest; the remainder hangs past
+    /// the physical screen edge, as if the card is emerging from behind the
+    /// monitor's bezel.
+    private let visibleFraction: CGFloat = 0.8
     private let corner: Corner
     private let restingOrigin: NSPoint
 
@@ -35,7 +36,7 @@ final class CornerPreviewPanel: NSPanel {
 
     init(corner: Corner, icon: NSImage?, screenFrame: NSRect) {
         self.corner = corner
-        let restingOrigin = CornerPreviewPanel.restingOrigin(for: corner, in: screenFrame, size: previewSize, margin: edgeMargin)
+        let restingOrigin = CornerPreviewPanel.restingOrigin(for: corner, in: screenFrame, size: previewSize, visibleFraction: visibleFraction)
         let startOrigin = CornerPreviewPanel.offscreenOrigin(for: corner, restingOrigin: restingOrigin, size: previewSize)
         self.restingOrigin = restingOrigin
 
@@ -48,7 +49,7 @@ final class CornerPreviewPanel: NSPanel {
 
         isOpaque = false
         backgroundColor = .clear
-        hasShadow = false
+        hasShadow = true
         level = .popUpMenu
         collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenAuxiliary, .ignoresCycle]
         hidesOnDeactivate = false
@@ -70,16 +71,18 @@ final class CornerPreviewPanel: NSPanel {
         }
     }
 
-    private static func restingOrigin(for corner: Corner, in screenFrame: NSRect, size: NSSize, margin: CGFloat) -> NSPoint {
+    private static func restingOrigin(for corner: Corner, in screenFrame: NSRect, size: NSSize, visibleFraction: CGFloat) -> NSPoint {
+        let hiddenWidth = size.width * (1 - visibleFraction)
+        let hiddenHeight = size.height * (1 - visibleFraction)
         switch corner {
         case .topLeft:
-            return NSPoint(x: screenFrame.minX + margin, y: screenFrame.maxY - margin - size.height)
+            return NSPoint(x: screenFrame.minX - hiddenWidth, y: screenFrame.maxY - size.height + hiddenHeight)
         case .topRight:
-            return NSPoint(x: screenFrame.maxX - margin - size.width, y: screenFrame.maxY - margin - size.height)
+            return NSPoint(x: screenFrame.maxX - size.width + hiddenWidth, y: screenFrame.maxY - size.height + hiddenHeight)
         case .bottomLeft:
-            return NSPoint(x: screenFrame.minX + margin, y: screenFrame.minY + margin)
+            return NSPoint(x: screenFrame.minX - hiddenWidth, y: screenFrame.minY - hiddenHeight)
         case .bottomRight:
-            return NSPoint(x: screenFrame.maxX - margin - size.width, y: screenFrame.minY + margin)
+            return NSPoint(x: screenFrame.maxX - size.width + hiddenWidth, y: screenFrame.minY - hiddenHeight)
         }
     }
 
@@ -107,12 +110,17 @@ private final class CornerPreviewView: NSView {
     private let cornerRadius: CGFloat = 22
     private let shapeLayer = CAShapeLayer()
     private let iconView = NSImageView()
-    private var isHovering = false {
-        didSet { updateFill() }
-    }
 
-    private let baseFill = NSColor.windowBackgroundColor.withAlphaComponent(0.98)
-    private let hoverFill = NSColor.controlAccentColor.withAlphaComponent(0.16)
+    /// `NSColor.windowBackgroundColor` is a system "material" color whose
+    /// `.cgColor` bridging isn't guaranteed fully opaque (it's meant to be
+    /// backed by a blur/vibrancy layer). Since this card has no such layer,
+    /// desktop content bled through it. Plain `NSColor(white:alpha:)` values
+    /// are true flat RGBA and always render 100% opaque.
+    private var baseFill: NSColor {
+        SettingsStore.shared.cardTheme == .dark
+            ? NSColor(white: 0.0, alpha: 1)
+            : NSColor(white: 0.98, alpha: 1)
+    }
 
     init(frame: NSRect, icon: NSImage?) {
         super.init(frame: frame)
@@ -153,7 +161,6 @@ private final class CornerPreviewView: NSView {
             iconView.centerYAnchor.constraint(equalTo: iconClip.centerYAnchor),
         ])
 
-        addTrackingArea(NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways, .inVisibleRect], owner: self))
     }
 
     required init?(coder: NSCoder) { fatalError() }
@@ -164,12 +171,10 @@ private final class CornerPreviewView: NSView {
         shapeLayer.path = CGPath(roundedRect: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
     }
 
-    override func mouseEntered(with event: NSEvent) { isHovering = true }
-    override func mouseExited(with event: NSEvent) { isHovering = false }
     override func mouseDown(with event: NSEvent) { onConfirm?() }
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
     private func updateFill() {
-        shapeLayer.fillColor = (isHovering ? hoverFill.blended(withFraction: 0.9, of: baseFill) : baseFill)?.cgColor
+        shapeLayer.fillColor = baseFill.cgColor
     }
 }

@@ -2,6 +2,18 @@ import Foundation
 import AppKit
 import Combine
 
+enum CardTheme: String, CaseIterable {
+    case light
+    case dark
+
+    var title: String {
+        switch self {
+        case .light: return "Light"
+        case .dark: return "Dark"
+        }
+    }
+}
+
 final class SettingsStore: ObservableObject {
     static let shared = SettingsStore()
 
@@ -9,9 +21,13 @@ final class SettingsStore: ObservableObject {
     @Published var launchAtLogin: Bool = false {
         didSet { LoginItem.setEnabled(launchAtLogin) }
     }
+    @Published var cardTheme: CardTheme = .light {
+        didSet { defaults.set(cardTheme.rawValue, forKey: cardThemeKey) }
+    }
 
     private let defaults = UserDefaults.standard
     private let keyPrefix = "corner.app."
+    private let cardThemeKey = "cardTheme"
 
     private init() {
         for corner in Corner.allCases {
@@ -20,6 +36,9 @@ final class SettingsStore: ObservableObject {
             }
         }
         launchAtLogin = LoginItem.isEnabled
+        if let raw = defaults.string(forKey: cardThemeKey), let theme = CardTheme(rawValue: raw) {
+            cardTheme = theme
+        }
     }
 
     func setApp(_ path: String?, for corner: Corner) {

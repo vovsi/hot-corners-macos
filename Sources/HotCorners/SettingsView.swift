@@ -22,6 +22,14 @@ struct SettingsView: View {
 
             Divider()
 
+            Picker("Card theme", selection: $store.cardTheme) {
+                ForEach(CardTheme.allCases, id: \.self) { theme in
+                    Text(theme.title).tag(theme)
+                }
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 200)
+
             Toggle("Launch Hot Corners at login", isOn: $store.launchAtLogin)
 
             Button("Quit Hot Corners") {
