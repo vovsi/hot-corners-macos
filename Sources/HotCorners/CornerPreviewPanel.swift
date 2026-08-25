@@ -7,7 +7,7 @@ final class CornerPreviewPanel: NSPanel {
 
     /// Base card size at `cardScale == 1.0`; the panel and its icon scale
     /// uniformly from this baseline.
-    private static let baseSize: CGFloat = 69
+    private static let baseSize: CGFloat = 96
     private let previewSize: NSSize
     /// Fraction of the card kept on-screen at rest; the remainder hangs past
     /// the physical screen edge, as if the card is emerging from behind the
@@ -141,7 +141,7 @@ private final class CornerPreviewView: NSView {
     }
 
     init(frame: NSRect, icon: NSImage?, scale: CGFloat) {
-        self.cornerRadius = 7 * scale
+        self.cornerRadius = 10 * scale
         super.init(frame: frame)
 
         wantsLayer = true
@@ -159,7 +159,7 @@ private final class CornerPreviewView: NSView {
         // overscaled to crop that shadow ring away.
         let iconClip = NSView()
         iconClip.wantsLayer = true
-        iconClip.layer?.cornerRadius = 12 * scale
+        iconClip.layer?.cornerRadius = 13 * scale
         iconClip.layer?.masksToBounds = true
         iconClip.translatesAutoresizingMaskIntoConstraints = false
         addSubview(iconClip)
@@ -170,12 +170,12 @@ private final class CornerPreviewView: NSView {
         iconClip.addSubview(iconView)
 
         NSLayoutConstraint.activate([
-            iconClip.widthAnchor.constraint(equalToConstant: 57 * scale),
-            iconClip.heightAnchor.constraint(equalToConstant: 57 * scale),
+            iconClip.widthAnchor.constraint(equalToConstant: 64 * scale),
+            iconClip.heightAnchor.constraint(equalToConstant: 64 * scale),
             iconClip.centerXAnchor.constraint(equalTo: centerXAnchor),
             iconClip.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconView.widthAnchor.constraint(equalToConstant: 62 * scale),
-            iconView.heightAnchor.constraint(equalToConstant: 62 * scale),
+            iconView.widthAnchor.constraint(equalToConstant: 70 * scale),
+            iconView.heightAnchor.constraint(equalToConstant: 70 * scale),
             iconView.centerXAnchor.constraint(equalTo: iconClip.centerXAnchor),
             iconView.centerYAnchor.constraint(equalTo: iconClip.centerYAnchor),
         ])
