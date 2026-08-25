@@ -24,10 +24,14 @@ final class SettingsStore: ObservableObject {
     @Published var cardTheme: CardTheme = .light {
         didSet { defaults.set(cardTheme.rawValue, forKey: cardThemeKey) }
     }
+    @Published var cardScale: Double = 1.0 {
+        didSet { defaults.set(cardScale, forKey: cardScaleKey) }
+    }
 
     private let defaults = UserDefaults.standard
     private let keyPrefix = "corner.app."
     private let cardThemeKey = "cardTheme"
+    private let cardScaleKey = "cardScale"
 
     private init() {
         for corner in Corner.allCases {
@@ -38,6 +42,9 @@ final class SettingsStore: ObservableObject {
         launchAtLogin = LoginItem.isEnabled
         if let raw = defaults.string(forKey: cardThemeKey), let theme = CardTheme(rawValue: raw) {
             cardTheme = theme
+        }
+        if defaults.object(forKey: cardScaleKey) != nil {
+            cardScale = defaults.double(forKey: cardScaleKey)
         }
     }
 

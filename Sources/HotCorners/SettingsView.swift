@@ -30,6 +30,17 @@ struct SettingsView: View {
             .pickerStyle(.segmented)
             .frame(width: 200)
 
+            VStack(spacing: 4) {
+                Text("Card size")
+                HStack {
+                    Slider(value: $store.cardScale, in: 0.5...2.0)
+                    Text("\(Int(store.cardScale * 100))%")
+                        .frame(width: 44, alignment: .trailing)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(width: 280)
+
             Toggle("Launch Hot Corners at login", isOn: $store.launchAtLogin)
 
             Button("Quit Hot Corners") {

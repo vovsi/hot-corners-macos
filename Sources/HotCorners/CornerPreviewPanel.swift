@@ -5,7 +5,10 @@ import AppKit
 final class CornerPreviewPanel: NSPanel {
     var onConfirm: (() -> Void)?
 
-    private let previewSize = NSSize(width: 220, height: 220)
+    /// Base card size at `cardScale == 1.0`; the panel and its icon scale
+    /// uniformly from this baseline.
+    private static let baseSize: CGFloat = 69
+    private let previewSize: NSSize
     /// Fraction of the card kept on-screen at rest; the remainder hangs past
     /// the physical screen edge, as if the card is emerging from behind the
     /// monitor's bezel.
@@ -37,6 +40,9 @@ final class CornerPreviewPanel: NSPanel {
 
     init(corner: Corner, icon: NSImage?, screenFrame: NSRect) {
         self.corner = corner
+        let scale = CGFloat(SettingsStore.shared.cardScale)
+        let previewSize = NSSize(width: CornerPreviewPanel.baseSize * scale, height: CornerPreviewPanel.baseSize * scale)
+        self.previewSize = previewSize
         let restingOrigin = CornerPreviewPanel.restingOrigin(for: corner, in: screenFrame, size: previewSize, visibleFraction: visibleFraction)
         let startOrigin = CornerPreviewPanel.offscreenOrigin(for: corner, restingOrigin: restingOrigin, size: previewSize)
         self.restingOrigin = restingOrigin
@@ -58,7 +64,7 @@ final class CornerPreviewPanel: NSPanel {
         isReleasedWhenClosed = false
         alphaValue = 1
 
-        let view = CornerPreviewView(frame: NSRect(origin: .zero, size: previewSize), icon: icon)
+        let view = CornerPreviewView(frame: NSRect(origin: .zero, size: previewSize), icon: icon, scale: scale)
         view.onConfirm = { [weak self] in self?.onConfirm?() }
         contentView = view
     }
@@ -119,7 +125,7 @@ final class CornerPreviewPanel: NSPanel {
 private final class CornerPreviewView: NSView {
     var onConfirm: (() -> Void)?
 
-    private let cornerRadius: CGFloat = 22
+    private let cornerRadius: CGFloat
     private let shapeLayer = CAShapeLayer()
     private let iconView = NSImageView()
 
@@ -134,7 +140,8 @@ private final class CornerPreviewView: NSView {
             : NSColor(white: 0.98, alpha: 1)
     }
 
-    init(frame: NSRect, icon: NSImage?) {
+    init(frame: NSRect, icon: NSImage?, scale: CGFloat) {
+        self.cornerRadius = 7 * scale
         super.init(frame: frame)
 
         wantsLayer = true
@@ -152,7 +159,7 @@ private final class CornerPreviewView: NSView {
         // overscaled to crop that shadow ring away.
         let iconClip = NSView()
         iconClip.wantsLayer = true
-        iconClip.layer?.cornerRadius = 30
+        iconClip.layer?.cornerRadius = 12 * scale
         iconClip.layer?.masksToBounds = true
         iconClip.translatesAutoresizingMaskIntoConstraints = false
         addSubview(iconClip)
@@ -163,12 +170,12 @@ private final class CornerPreviewView: NSView {
         iconClip.addSubview(iconView)
 
         NSLayoutConstraint.activate([
-            iconClip.widthAnchor.constraint(equalToConstant: 144),
-            iconClip.heightAnchor.constraint(equalToConstant: 144),
+            iconClip.widthAnchor.constraint(equalToConstant: 57 * scale),
+            iconClip.heightAnchor.constraint(equalToConstant: 57 * scale),
             iconClip.centerXAnchor.constraint(equalTo: centerXAnchor),
             iconClip.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconView.widthAnchor.constraint(equalToConstant: 158),
-            iconView.heightAnchor.constraint(equalToConstant: 158),
+            iconView.widthAnchor.constraint(equalToConstant: 62 * scale),
+            iconView.heightAnchor.constraint(equalToConstant: 62 * scale),
             iconView.centerXAnchor.constraint(equalTo: iconClip.centerXAnchor),
             iconView.centerYAnchor.constraint(equalTo: iconClip.centerYAnchor),
         ])
