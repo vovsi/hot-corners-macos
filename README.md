@@ -1,0 +1,1 @@
+# hot-corners-macos
