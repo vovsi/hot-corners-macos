@@ -88,9 +88,12 @@ final class CornerMonitor {
     }
 
     private func hidePreview() {
-        previewPanel?.orderOut(nil)
+        guard let panel = previewPanel else { return }
         previewPanel = nil
         previewCorner = nil
+        panel.playOutroAnimation {
+            panel.orderOut(nil)
+        }
     }
 
     private func launch(path: String) {

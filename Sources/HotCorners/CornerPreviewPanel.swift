@@ -12,6 +12,7 @@ final class CornerPreviewPanel: NSPanel {
     private let visibleFraction: CGFloat = 0.8
     private let corner: Corner
     private let restingOrigin: NSPoint
+    private let offscreenOrigin: NSPoint
 
     /// The panel's target on-screen frame — stable even while `frame` itself
     /// is mid-flight during the intro slide.
@@ -39,6 +40,7 @@ final class CornerPreviewPanel: NSPanel {
         let restingOrigin = CornerPreviewPanel.restingOrigin(for: corner, in: screenFrame, size: previewSize, visibleFraction: visibleFraction)
         let startOrigin = CornerPreviewPanel.offscreenOrigin(for: corner, restingOrigin: restingOrigin, size: previewSize)
         self.restingOrigin = restingOrigin
+        self.offscreenOrigin = startOrigin
 
         super.init(
             contentRect: NSRect(origin: startOrigin, size: previewSize),
@@ -69,6 +71,16 @@ final class CornerPreviewPanel: NSPanel {
             context.timingFunction = CAMediaTimingFunction(name: .easeOut)
             self.animator().setFrame(NSRect(origin: self.restingOrigin, size: self.frame.size), display: true)
         }
+    }
+
+    /// Slides the panel back off-screen, mirroring the intro animation, then
+    /// invokes `completion` once it's fully retreated.
+    func playOutroAnimation(completion: @escaping () -> Void) {
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.22
+            context.timingFunction = CAMediaTimingFunction(name: .easeIn)
+            self.animator().setFrame(NSRect(origin: self.offscreenOrigin, size: self.frame.size), display: true)
+        }, completionHandler: completion)
     }
 
     private static func restingOrigin(for corner: Corner, in screenFrame: NSRect, size: NSSize, visibleFraction: CGFloat) -> NSPoint {
