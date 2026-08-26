@@ -64,7 +64,7 @@ final class CornerPreviewPanel: NSPanel {
         isReleasedWhenClosed = false
         alphaValue = 1
 
-        let view = CornerPreviewView(frame: NSRect(origin: .zero, size: previewSize), icon: icon, scale: scale)
+        let view = CornerPreviewView(frame: NSRect(origin: .zero, size: previewSize), icon: icon, scale: scale, corner: corner)
         view.onConfirm = { [weak self] in self?.onConfirm?() }
         contentView = view
     }
@@ -126,6 +126,12 @@ private final class CornerPreviewView: NSView {
     var onConfirm: (() -> Void)?
 
     private let cornerRadius: CGFloat
+    /// Radius of the one card corner that sits fully on-screen (the rest
+    /// hang past the physical screen edge behind the monitor bezel), matched
+    /// to `iconClip`'s corner radius so the card's only visible rounding
+    /// reads consistently with the icon it contains.
+    private let visibleCornerRadius: CGFloat
+    private let corner: Corner
     private let shapeLayer = CAShapeLayer()
     private let iconView = NSImageView()
 
@@ -140,8 +146,10 @@ private final class CornerPreviewView: NSView {
             : NSColor(white: 0.98, alpha: 1)
     }
 
-    init(frame: NSRect, icon: NSImage?, scale: CGFloat) {
+    init(frame: NSRect, icon: NSImage?, scale: CGFloat, corner: Corner) {
         self.cornerRadius = 10 * scale
+        self.visibleCornerRadius = 27.92 * scale
+        self.corner = corner
         super.init(frame: frame)
 
         wantsLayer = true
@@ -187,7 +195,7 @@ private final class CornerPreviewView: NSView {
     override func layout() {
         super.layout()
         shapeLayer.frame = bounds
-        shapeLayer.path = CGPath(roundedRect: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
+        shapeLayer.path = cardPath(in: bounds)
     }
 
     override func mouseDown(with event: NSEvent) { onConfirm?() }
@@ -195,5 +203,37 @@ private final class CornerPreviewView: NSView {
 
     private func updateFill() {
         shapeLayer.fillColor = baseFill.cgColor
+    }
+
+    /// Builds the card outline with per-corner radii: the one corner that
+    /// sits fully on-screen (opposite the physical screen corner that
+    /// triggered the panel) uses `visibleCornerRadius`; the other three —
+    /// which hang past the screen edge and are never actually seen — keep
+    /// `cornerRadius`.
+    private func cardPath(in rect: CGRect) -> CGPath {
+        var topLeft = cornerRadius
+        var topRight = cornerRadius
+        var bottomLeft = cornerRadius
+        var bottomRight = cornerRadius
+        switch corner {
+        case .topLeft: bottomRight = visibleCornerRadius
+        case .topRight: bottomLeft = visibleCornerRadius
+        case .bottomLeft: topRight = visibleCornerRadius
+        case .bottomRight: topLeft = visibleCornerRadius
+        }
+
+        let path = CGMutablePath()
+        let minX = rect.minX, minY = rect.minY, maxX = rect.maxX, maxY = rect.maxY
+        path.move(to: CGPoint(x: minX + bottomLeft, y: minY))
+        path.addLine(to: CGPoint(x: maxX - bottomRight, y: minY))
+        path.addArc(tangent1End: CGPoint(x: maxX, y: minY), tangent2End: CGPoint(x: maxX, y: minY + bottomRight), radius: bottomRight)
+        path.addLine(to: CGPoint(x: maxX, y: maxY - topRight))
+        path.addArc(tangent1End: CGPoint(x: maxX, y: maxY), tangent2End: CGPoint(x: maxX - topRight, y: maxY), radius: topRight)
+        path.addLine(to: CGPoint(x: minX + topLeft, y: maxY))
+        path.addArc(tangent1End: CGPoint(x: minX, y: maxY), tangent2End: CGPoint(x: minX, y: maxY - topLeft), radius: topLeft)
+        path.addLine(to: CGPoint(x: minX, y: minY + bottomLeft))
+        path.addArc(tangent1End: CGPoint(x: minX, y: minY), tangent2End: CGPoint(x: minX + bottomLeft, y: minY), radius: bottomLeft)
+        path.closeSubpath()
+        return path
     }
 }
