@@ -15,8 +15,10 @@ swift build -c release
 echo "Assembling app bundle…"
 rm -rf "$BUNDLE_PATH"
 mkdir -p "$BUNDLE_PATH/Contents/MacOS"
+mkdir -p "$BUNDLE_PATH/Contents/Resources"
 
 cp "$BUILD_DIR/$APP_NAME" "$BUNDLE_PATH/Contents/MacOS/$APP_NAME"
+cp "Resources/AppIcon.icns" "$BUNDLE_PATH/Contents/Resources/AppIcon.icns"
 
 cat > "$BUNDLE_PATH/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
@@ -35,6 +37,8 @@ cat > "$BUNDLE_PATH/Contents/Info.plist" <<PLIST
     <string>1.0</string>
     <key>CFBundleExecutable</key>
     <string>$APP_NAME</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>LSUIElement</key>
