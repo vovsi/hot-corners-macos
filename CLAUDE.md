@@ -160,6 +160,28 @@ Force-show the panel from code and inspect it directly, without moving the mouse
 6. Always remove the debug branch (and the `debugPanel` property) before the final redeploy —
    `git diff Sources/HotCorners/AppDelegate.swift` should come back empty.
 
+## Versioning & updates
+
+There are no hand-written version numbers. `build.sh` derives everything from git:
+
+- `CFBundleVersion` = `git rev-list --count HEAD` — the **build number**, monotonically
+  increasing, and the only thing the update check compares.
+- `CFBundleShortVersionString` = the commit date (`YYYY.MM.DD`), shown in Finder.
+- `GitCommit` = the full SHA of the commit the binary was built from.
+
+`build.sh` also zips the bundle to `dist/HotCorners.zip`. Running `./build.sh --release`
+additionally publishes a GitHub release tagged `build-<N>` with that zip attached (it refuses
+if the sources are dirty or HEAD isn't pushed). So the publish flow is: commit → push →
+`./build.sh --release`.
+
+`Updater.swift` + the "Check for Updates…" menu item read
+`api.github.com/repos/vovsi/hot-corners-macos/releases/latest`, parse `build-<N>` out of
+`tag_name`, and compare it against the local `CFBundleVersion`. On confirmation it downloads
+the zip (only from github.com paths under this repo, or githubusercontent asset hosts),
+unpacks with `ditto`, then writes a detached `/bin/sh` script that waits for the app's pid to
+exit, swaps `Bundle.main.bundleURL` in place, and `open`s it again. A running bundle can't
+replace itself, hence the helper script.
+
 ## Architecture
 
 Everything lives in `Sources/HotCorners/`, one type per file:
