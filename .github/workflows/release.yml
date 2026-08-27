@@ -1,0 +1,43 @@
+name: Release
+
+# Every push to main is a release: the build number is the commit count,
+# so the app's "Check for Updates…" sees a new build as soon as CI finishes.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.idea/**'
+      - '**/*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # build.sh needs the full history for `git rev-list --count`
+
+      - name: Build app bundle
+        run: ./build.sh
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BUILD_NUMBER="$(git rev-list --count HEAD)"
+          SHORT="$(git rev-parse --short HEAD)"
+          SUBJECT="$(git log -1 --format=%s)"
+          TAG="build-$BUILD_NUMBER"
+
+          # Re-runs of the same commit replace the previous release.
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release delete "$TAG" --yes --cleanup-tag
+          fi
+
+          gh release create "$TAG" dist/HotCorners.zip \
+            --title "Build $BUILD_NUMBER · $SHORT" \
+            --notes "$SUBJECT"
