@@ -169,10 +169,12 @@ There are no hand-written version numbers. `build.sh` derives everything from gi
 - `CFBundleShortVersionString` = the commit date (`YYYY.MM.DD`), shown in Finder.
 - `GitCommit` = the full SHA of the commit the binary was built from.
 
-`build.sh` also zips the bundle to `dist/HotCorners.zip`. Running `./build.sh --release`
-additionally publishes a GitHub release tagged `build-<N>` with that zip attached (it refuses
-if the sources are dirty or HEAD isn't pushed). So the publish flow is: commit → push →
-`./build.sh --release`.
+`build.sh` also zips the bundle to `dist/HotCorners.zip`. Publishing is automatic:
+`.github/workflows/release.yml` runs on every push to `main` (skipping `.idea/` and `*.md`),
+builds on a macOS runner and publishes a release tagged `build-<N>` with that zip attached —
+about 35s end to end. So the release flow is just `git push`. `./build.sh --release` does the
+same thing by hand from a local checkout (it refuses if the sources are dirty or HEAD isn't
+pushed) and is only a fallback.
 
 `Updater.swift` + the "Check for Updates…" menu item read
 `api.github.com/repos/vovsi/hot-corners-macos/releases/latest`, parse `build-<N>` out of
