@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b87108-f873-4389-a005-1a4b94d57430" name="Changes" comment="add icon" />
+    <list default="true" id="99b87108-f873-4389-a005-1a4b94d57430" name="Changes" comment="add check for updates" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +37,9 @@
                                             <execution>
                                               <execution>
                                                 <execution>
-                                                  <execution />
+                                                  <execution>
+                                                    <execution />
+                                                  </execution>
                                                 </execution>
                                               </execution>
                                             </execution>
@@ -63,7 +65,7 @@
     </execution>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="5208" />
+    <option name="cachedIndexableFilesCount" value="5232" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -87,23 +89,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0024213041014434" />
-      <entry key="MS500" value="1.2997849784477782" />
-      <entry key="S2" value="1.7399501573733107" />
-      <entry key="S5" value="1.8865045863076955" />
-      <entry key="S10" value="1.9415437251172647" />
-      <entry key="S30" value="1.9801220607085799" />
-      <entry key="S60" value="1.9900119662889015" />
-      <entry key="M2" value="1.9968876577548123" />
-      <entry key="M5" value="2.303914635352889" />
-      <entry key="M10" value="3.9232297212513525" />
-      <entry key="M15" value="5.610085894708526" />
-      <entry key="M30" value="8.826688235604838" />
-      <entry key="H1" value="11.412589377843705" />
-      <entry key="H2" value="13.059513551932632" />
-      <entry key="H4" value="13.989949514291743" />
-      <entry key="D1" value="14.82584349030984" />
-      <entry key="W1" value="14.974974210221193" />
+      <entry key="MS100" value="1.0000586309178798" />
+      <entry key="MS500" value="1.2849398146879047" />
+      <entry key="S2" value="2.625344213465681" />
+      <entry key="S5" value="3.342321904179226" />
+      <entry key="S10" value="3.6497890004249136" />
+      <entry key="S30" value="3.8781435242079576" />
+      <entry key="S60" value="3.938407948398616" />
+      <entry key="M2" value="3.970913678967941" />
+      <entry key="M5" value="4.292429309298007" />
+      <entry key="M10" value="5.914661622267947" />
+      <entry key="M15" value="7.602412884283962" />
+      <entry key="M30" value="10.820982029082426" />
+      <entry key="H1" value="13.408984650847346" />
+      <entry key="H2" value="15.057471822809463" />
+      <entry key="H4" value="15.988861031927751" />
+      <entry key="D1" value="16.825651951815473" />
+      <entry key="W1" value="16.974946589526333" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -125,23 +127,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9817753910003855" />
-      <entry key="MS500" value="1.293976971177116" />
-      <entry key="S2" value="1.7378858988882757" />
-      <entry key="S5" value="1.8855973382156992" />
-      <entry key="S10" value="1.9410747874166656" />
-      <entry key="S30" value="1.9799621700660075" />
-      <entry key="S60" value="1.9899315623300085" />
-      <entry key="M2" value="1.996847306492988" />
-      <entry key="M5" value="2.3038961762450403" />
-      <entry key="M10" value="3.923214243176138" />
-      <entry key="M15" value="5.610071196235472" />
-      <entry key="M30" value="8.826676689152762" />
-      <entry key="H1" value="11.412581911833463" />
-      <entry key="H2" value="13.05950927899631" />
-      <entry key="H4" value="13.989947225183826" />
-      <entry key="D1" value="14.825843085925785" />
-      <entry key="W1" value="14.974974151869105" />
+      <entry key="MS100" value="0.9862895258759177" />
+      <entry key="MS500" value="1.2804229554608653" />
+      <entry key="S2" value="2.6221938384402916" />
+      <entry key="S5" value="3.340633637307335" />
+      <entry key="S10" value="3.648853350163778" />
+      <entry key="S30" value="3.877809014749175" />
+      <entry key="S60" value="3.9382377100973587" />
+      <entry key="M2" value="3.97082776832392" />
+      <entry key="M5" value="4.292392478675851" />
+      <entry key="M10" value="5.914636941240764" />
+      <entry key="M15" value="7.602392046932737" />
+      <entry key="M30" value="10.820967410023613" />
+      <entry key="H1" value="13.408975647013932" />
+      <entry key="H2" value="15.057466780414057" />
+      <entry key="H4" value="15.988858357925274" />
+      <entry key="D1" value="16.825651483256603" />
+      <entry key="W1" value="16.974946522005748" />
     </decayedShown>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php@8.3/8.3.33/bin/php" />
@@ -187,6 +189,7 @@
       <updated>1787639693767</updated>
       <workItem from="1787639694783" duration="2800000" />
       <workItem from="1787660998403" duration="397000" />
+      <workItem from="1787829761692" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -220,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787730622605</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add check for updates">
+      <option name="closed" value="true" />
+      <created>1787829775830</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1787829775830</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +242,7 @@
     <MESSAGE value="add style for CornerPreviewPanel" />
     <MESSAGE value="fix rectangle preview" />
     <MESSAGE value="add icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="add icon" />
+    <MESSAGE value="add check for updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="add check for updates" />
   </component>
 </project>
