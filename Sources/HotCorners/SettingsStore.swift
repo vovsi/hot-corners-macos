@@ -27,11 +27,17 @@ final class SettingsStore: ObservableObject {
     @Published var cardScale: Double = 1.0 {
         didSet { defaults.set(cardScale, forKey: cardScaleKey) }
     }
+    /// Draw black wedges over the bottom screen corners so they look rounded
+    /// like the top ones.
+    @Published var roundBottomCorners: Bool = false {
+        didSet { defaults.set(roundBottomCorners, forKey: roundBottomCornersKey) }
+    }
 
     private let defaults = UserDefaults.standard
     private let keyPrefix = "corner.app."
     private let cardThemeKey = "cardTheme"
     private let cardScaleKey = "cardScale"
+    private let roundBottomCornersKey = "roundBottomCorners"
 
     private init() {
         for corner in Corner.allCases {
@@ -46,6 +52,7 @@ final class SettingsStore: ObservableObject {
         if defaults.object(forKey: cardScaleKey) != nil {
             cardScale = defaults.double(forKey: cardScaleKey)
         }
+        roundBottomCorners = defaults.bool(forKey: roundBottomCornersKey)
     }
 
     func setApp(_ path: String?, for corner: Corner) {

@@ -1,10 +1,13 @@
 import AppKit
 import SwiftUI
+import Combine
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private var settingsWindow: NSWindow?
     private let monitor = CornerMonitor()
+    private let cornerMask = ScreenCornerMask()
+    private var cancellables = Set<AnyCancellable>()
     private var updateItem: NSMenuItem!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -22,6 +25,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = menu
 
         monitor.start()
+
+        cornerMask.setEnabled(SettingsStore.shared.roundBottomCorners)
+        SettingsStore.shared.$roundBottomCorners
+            .sink { [weak self] enabled in self?.cornerMask.setEnabled(enabled) }
+            .store(in: &cancellables)
     }
 
     @objc private func showSettings() {
@@ -34,7 +42,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             )
             window.center()
             window.title = "Hot Corners"
-            window.contentView = NSHostingView(rootView: SettingsView())
+            let hosting = NSHostingView(rootView: SettingsView())
+            window.contentView = hosting
+            window.setContentSize(hosting.fittingSize)
             window.isReleasedWhenClosed = false
             settingsWindow = window
         }

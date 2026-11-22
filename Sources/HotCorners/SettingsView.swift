@@ -41,6 +41,9 @@ struct SettingsView: View {
             }
             .frame(width: 280)
 
+            Toggle("Round the bottom screen corners", isOn: $store.roundBottomCorners)
+                .help("Draws black corners at the bottom of every screen with the same radius macOS uses at the top.")
+
             Toggle("Launch Hot Corners at login", isOn: $store.launchAtLogin)
 
             Button("Quit Hot Corners") {
